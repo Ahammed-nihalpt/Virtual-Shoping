@@ -1,0 +1,32 @@
+
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/view_store_booking_report_post"><table class="table table-borderless">
+  <tr>
+    <td>From </td>
+    <th><input type="date" name="textfield" id="textfield" /></th>
+    <th>To</th>
+    <th><input type="date" name="textfield2" id="textfield2" /></th>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-success" /></td>
+  </tr>
+</table>
+  <table class="table table-borderless">
+    <tr>
+      <th>Sl_no</th>
+      <th>Store_Name</th>
+      <th>Booking_count</th>
+      <th>Amount_total</th>
+      <th>Date</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['store_name'] }}</td>
+      <td>{{ i['num'] }}</td>
+      <td>{{ i['total'] }}</td>
+       <td>{{ i['date'] }}</td>
+    </tr>
+        {% endfor %}
+  </table>
+</form>
+{% endblock %}

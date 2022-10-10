@@ -1,0 +1,25 @@
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action=""><table class="table table-borderless">
+  <tr>
+    <th>Sl_No</th>
+    <th>Customer Name</th>
+      <th>Store Details</th>
+    <th>Date</th>
+    <th>Complaint</th>
+    <th>&nbsp;</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ i['user_name'] }}</td>
+      <td>{{ i['store_name'] }}</td>
+    <td>{{ i['date'] }}</td>
+    <td>{{ i['complaint'] }}</td>
+    <td><a href="/send_reply/{{ i['complaint_id'] }}" class="btn btn-info">reply</a></td>
+  </tr>
+    {% endfor %}
+</table>
+
+</form>
+{% endblock %}

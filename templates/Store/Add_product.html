@@ -1,0 +1,38 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/store_add_product_post" enctype="multipart/form-data">
+    <table class="table table-borderless">
+  <tr>
+    <th>Product_name</th>
+    <td><input type="text" name="textfield" id="textfield" required /></td>
+  </tr>
+  <tr>
+    <th>Product_image</th>
+    <td><input type="file" name="fileField" id="fileField" required /></td>
+  </tr>
+  <tr>
+    <th>No_Of_Stock</th>
+    <td><input type="number" name="textfield2" id="textfield2" required /></td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td><input type="number" name="textfield3" id="textfield3" required/></td>
+  </tr>
+  <tr>
+    <th>Category</th>
+    <td><select name="select" id="select" required>
+        <option></option>
+        {% for i in data %}
+        <option value="{{ i['category_id'] }}">{{ i['category_name'] }}</option>
+        {% endfor %}
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ADD" class="btn btn-success"/></td>
+    </tr>
+</table>
+</form>
+{% endblock %}
+
+

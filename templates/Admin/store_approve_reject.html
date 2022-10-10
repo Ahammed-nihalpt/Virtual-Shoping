@@ -1,0 +1,41 @@
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-borderless">
+    <tr>
+      <th>Sl_No</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Place</th>
+      <th>pincode</th>
+      <th>Lic_No</th>
+      <th>Owner_Name</th>
+      <th>Owner_Contact</th>
+      <th>Acc_No</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['store_name'] }}</td>
+      <td>{{ i['store_contact'] }}</td>
+      <td>{{ i['store_email'] }}</td>
+      <td>{{ i['store_place'] }}</td>
+      <td>{{ i['store_pin'] }}</td>
+      <td>{{ i['store_lic_no'] }}</td>
+      <td>{{ i['owner_name'] }}</td>
+      <td>{{ i['owner_contact'] }}</td>
+      <td>{{ i['store_acc_no'] }}</td>
+      <td><a href="https://www.google.com/maps/?q={{ i["store_latitude"] }},{{ i["store_longitude"] }}" class="btn btn-info">Map</a></td>
+      <td><a href="/store_approve/{{ i['store_login_id'] }}" class="btn btn-info">Approve</a></td>
+      <td><a href="/store_reject/{{ i['store_login_id'] }}" class="btn btn-danger">Reject</a></td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

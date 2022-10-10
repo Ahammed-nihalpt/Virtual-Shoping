@@ -1,0 +1,25 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<table width="200" class="table table-borderless">
+  <tr>
+    <th>sl no</th>
+    <th>Customer Name</th>
+    <th>Order ID</th>
+    <th>total Amount</th>
+    <th>date &amp; Time</th>
+    <th>order status</th>
+
+  </tr>
+    {% for i in data %}
+  <tr>
+   <td>{{ loop.index }}</td>
+    <td>{{ i['user_name'] }}</td>
+    <td>{{ i['order_id'] }}</td>
+    <td>{{ i['total_amount'] }}</td>
+    <td>{{ i['date'] }}, {{ i['time'] }}</td>
+      <td>{{ i['order_status'] }}</td>
+
+  </tr>
+    {% endfor %}
+</table>
+{% endblock %}

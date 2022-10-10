@@ -1,0 +1,24 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<table width="200" class="table table-borderless">
+  <tr>
+    <th>sl no</th>
+    <th>Product Name</th>
+    <th>Category</th>
+    <th>product image</th>
+    <th>review</th>
+    <th>Customer name</th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ i['product_name'] }}</td>
+    <td>{{ i['category_name'] }}</td>
+    <td><img src="{{ i['product_image'] }}" width="50px" height="50px" alt=""/></td>
+    <td>{{ i['review'] }}</td>
+    <td>{{ i['user_name'] }}</td>
+  </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

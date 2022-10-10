@@ -1,0 +1,30 @@
+
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" action="/search_category" method="post">
+    <table class="table table-borderless">
+        <tr><th><input type="text" name="searchfield" /></th>
+            <td><input type="submit" name="s1" value="Search" class="btn btn-success"/></td>
+        </tr>
+    </table>
+
+    <br>
+    <table class="table table-borderless">
+
+  <tr>
+    <th>#</th>
+    <th>category_name</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+        {% for i in data %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ i['category_name'] }}</td>
+    <td><a href="/edit_category/{{ i['category_id'] }}" class="btn btn-info">edit</a></td>
+    <td><a href="/delete_category/{{ i['category_id'] }}" class="btn btn-danger">Delete</a></td>
+  </tr>
+        {% endfor %}
+</table>
+</form>
+{% endblock %}

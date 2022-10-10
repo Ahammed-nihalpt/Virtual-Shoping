@@ -1,0 +1,30 @@
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/store_rating_report_search">
+<table class="table table-borderless">
+        <tr><th><input type="text" name="searchfield" /></th>
+            <td><input type="submit" name="s1" value="Search" class="btn btn-success"/></td>
+        </tr>
+    </table>
+<br>
+
+  <table class="table table-borderless">
+    <tr>
+      <th>Sl_No</th>
+      <th>Store_Name</th>
+     
+      <th>Rating</th>
+      <th>Date</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+     
+      <td>{{ loop.index }}</td>
+      <td>{{ i['store_name'] }}</td>
+      <td>{{ i['rating'] }}</td>
+      <td>{{ i['date'] }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

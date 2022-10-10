@@ -1,0 +1,303 @@
+/*
+SQLyog Community v13.1.5  (64 bit)
+MySQL - 5.6.12-log : Database - virtual shopping
+*********************************************************************
+*/
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`virtual shopping` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `virtual shopping`;
+
+/*Table structure for table `cart` */
+
+DROP TABLE IF EXISTS `cart`;
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `count` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `cart` */
+
+insert  into `cart`(`cart_id`,`product_id`,`store_id`,`user_id`,`date`,`count`) values 
+(1,8,NULL,12,'',5);
+
+/*Table structure for table `category` */
+
+DROP TABLE IF EXISTS `category`;
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Data for the table `category` */
+
+insert  into `category`(`category_id`,`category_name`) values 
+(2,'Gadgets'),
+(6,'stationary'),
+(7,'TOOLS'),
+(8,'pencil'),
+(9,'powder');
+
+/*Table structure for table `chat` */
+
+DROP TABLE IF EXISTS `chat`;
+
+CREATE TABLE `chat` (
+  `chat_id` int(11) NOT NULL AUTO_INCREMENT,
+  `form_id` int(11) DEFAULT NULL,
+  `to_id` int(11) DEFAULT NULL,
+  `message` varchar(1000) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`chat_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `chat` */
+
+insert  into `chat`(`chat_id`,`form_id`,`to_id`,`message`,`date`) values 
+(1,10,2,'hi','2022-03-01'),
+(2,10,2,'hi','2022-03-01'),
+(3,2,10,'hlo','2022-03-01'),
+(4,10,2,'hi','2022-03-01'),
+(5,10,2,'hi','2022-03-05'),
+(6,10,2,'hi\r\n','2022-03-15'),
+(7,10,2,'hi\r\n','2022-03-15');
+
+/*Table structure for table `complaint` */
+
+DROP TABLE IF EXISTS `complaint`;
+
+CREATE TABLE `complaint` (
+  `complaint_id` int(11) NOT NULL,
+  `user_lid` int(11) DEFAULT NULL,
+  `complaint` varchar(1000) DEFAULT NULL,
+  `reply` varchar(1000) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `store_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`complaint_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `complaint` */
+
+insert  into `complaint`(`complaint_id`,`user_lid`,`complaint`,`reply`,`date`,`store_id`) values 
+(1,2,'nqjshjh','gtyutu\r\n','2021-12-01',3);
+
+/*Table structure for table `customer` */
+
+DROP TABLE IF EXISTS `customer`;
+
+CREATE TABLE `customer` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(100) DEFAULT NULL,
+  `user_contact` bigint(15) DEFAULT NULL,
+  `user_email` varchar(100) DEFAULT NULL,
+  `user_image` varchar(100) DEFAULT NULL,
+  `user_place` varchar(100) DEFAULT NULL,
+  `user_pin` varchar(15) DEFAULT NULL,
+  `user_post` varchar(100) DEFAULT NULL,
+  `user_lid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `customer` */
+
+insert  into `customer`(`user_id`,`user_name`,`user_contact`,`user_email`,`user_image`,`user_place`,`user_pin`,`user_post`,`user_lid`) values 
+(1,'akhil',7894561232,'akh@gmail.com','asd','calicut','673004\0\0\0\0\0\0\0\0\0','calicut',2),
+(2,'a',12323,'ad@gmail.com','adas','calicut','673002','calicut',12),
+(3,'Erff',1233,'Ffggg','/static/cus_img/20220325-123422.jpg','Ffgg','234','Fgg',NULL);
+
+/*Table structure for table `login` */
+
+DROP TABLE IF EXISTS `login`;
+
+CREATE TABLE `login` (
+  `login_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(100) DEFAULT NULL,
+  `pass_word` varchar(100) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`login_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `login` */
+
+insert  into `login`(`login_id`,`user_name`,`pass_word`,`type`) values 
+(1,'admin','admin','admin'),
+(10,'hisham@gmail.com','852','store'),
+(11,'vijaysankar@gmail.com','123','store'),
+(12,'a','a','customer'),
+(13,'Ffggg','123','customer'),
+(14,'adil@gmail.com','Abc12345','store');
+
+/*Table structure for table `order_main` */
+
+DROP TABLE IF EXISTS `order_main`;
+
+CREATE TABLE `order_main` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `total_amount` int(11) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `time` varchar(50) DEFAULT NULL,
+  `store_lid` int(11) DEFAULT NULL,
+  `delivery_address` varchar(200) DEFAULT NULL,
+  `delivery_place` varchar(100) DEFAULT NULL,
+  `delivery_pin` bigint(15) DEFAULT NULL,
+  `delivery_post` varchar(50) DEFAULT NULL,
+  `order_status` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `order_main` */
+
+insert  into `order_main`(`order_id`,`user_id`,`total_amount`,`date`,`time`,`store_lid`,`delivery_address`,`delivery_place`,`delivery_pin`,`delivery_post`,`order_status`) values 
+(1,1,2500,'2022-03-01','11:45:08',10,'calicut','kozhikode',673001,'calicut','paid'),
+(2,1,1500,'2021-12-03',NULL,10,'kannur','kannur',651005,'kannur','paid'),
+(3,1,2000,'2021-12-04',NULL,3,'kollam','kollam',581022,'kollam','pending');
+
+/*Table structure for table `order_sub` */
+
+DROP TABLE IF EXISTS `order_sub`;
+
+CREATE TABLE `order_sub` (
+  `order_sub_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `quantity` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`order_sub_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `order_sub` */
+
+insert  into `order_sub`(`order_sub_id`,`order_id`,`product_id`,`quantity`) values 
+(1,1,8,'10'),
+(2,1,5,'20');
+
+/*Table structure for table `payment` */
+
+DROP TABLE IF EXISTS `payment`;
+
+CREATE TABLE `payment` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) DEFAULT NULL,
+  `amount` float DEFAULT NULL,
+  `payment_date` varchar(20) DEFAULT NULL,
+  `payment_status` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `payment` */
+
+insert  into `payment`(`payment_id`,`order_id`,`amount`,`payment_date`,`payment_status`) values 
+(1,1,2500,'2021-12-02','paid');
+
+/*Table structure for table `products` */
+
+DROP TABLE IF EXISTS `products`;
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_id` int(11) DEFAULT NULL,
+  `product_image` varchar(100) DEFAULT NULL,
+  `stock_available` bigint(20) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `product_name` varchar(200) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `store_lid` int(10) DEFAULT NULL,
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+/*Data for the table `products` */
+
+insert  into `products`(`product_id`,`store_id`,`product_image`,`stock_available`,`price`,`product_name`,`category_id`,`store_lid`) values 
+(8,NULL,'/static/store_product_image/20220221-153455.jpg',154,499,'Headphone',2,10),
+(9,NULL,'/static/store_product_image/20220315-121615.jpg',50,100,'pencil',6,10),
+(10,NULL,'/static/store_product_image/20220315-125430.jpg',0,12,'pencil',2,11),
+(11,NULL,'/static/store_product_image/20220315-125618.jpg',50,0,'',7,11),
+(12,NULL,'/static/store_product_image/20220331-143930.jpg',50,70,'pencil',6,14);
+
+/*Table structure for table `rating` */
+
+DROP TABLE IF EXISTS `rating`;
+
+CREATE TABLE `rating` (
+  `rating_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_lid` int(11) DEFAULT NULL,
+  `store_lid` int(11) DEFAULT NULL,
+  `rating` float DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`rating_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `rating` */
+
+insert  into `rating`(`rating_id`,`user_lid`,`store_lid`,`rating`,`date`) values 
+(1,2,10,5,'2021-12-05');
+
+/*Table structure for table `review` */
+
+DROP TABLE IF EXISTS `review`;
+
+CREATE TABLE `review` (
+  `review_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `review` varchar(100) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`review_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `review` */
+
+insert  into `review`(`review_id`,`product_id`,`user_id`,`review`,`date`) values 
+(1,5,2,'5',NULL);
+
+/*Table structure for table `store` */
+
+DROP TABLE IF EXISTS `store`;
+
+CREATE TABLE `store` (
+  `store_id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_name` varchar(100) DEFAULT NULL,
+  `store_contact` bigint(15) DEFAULT NULL,
+  `store_email` varchar(50) DEFAULT NULL,
+  `store_place` varchar(50) DEFAULT NULL,
+  `store_pin` bigint(10) DEFAULT NULL,
+  `store_lic_no` varchar(100) DEFAULT NULL,
+  `owner_name` varchar(100) DEFAULT NULL,
+  `owner_contact` bigint(15) DEFAULT NULL,
+  `store_latitude` double DEFAULT NULL,
+  `store_longitude` double DEFAULT NULL,
+  `store_login_id` int(11) DEFAULT NULL,
+  `store_acc_no` bigint(100) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `store_post` varchar(100) DEFAULT NULL,
+  `store_image` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`store_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `store` */
+
+insert  into `store`(`store_id`,`store_name`,`store_contact`,`store_email`,`store_place`,`store_pin`,`store_lic_no`,`owner_name`,`owner_contact`,`store_latitude`,`store_longitude`,`store_login_id`,`store_acc_no`,`status`,`store_post`,`store_image`) values 
+(12,'hisham',8521479635,'hisham@gmail.com','kerala',645289,'4745444','hisham.s',9632147854,12.568,11.586,10,7894645121,'approved','kollanayi','/static/store_img/20220219-124350.jpg'),
+(13,'Vijay Sankar Store',9074976360,'vijaysankar@gmail.com','Chalappuram',673001,'7945825956265','Vijay Sankar',9765825513,48.5984926,12.549849,11,778855462136,'approved','Chalappuram','/static/store_img/20220305-101251.jpg'),
+(14,'nihal',1234567891,'adil@gmail.com','calicut',155555,'7945825956265','adhila',1252522522,48.5984926,15.2555,14,778855462136,'approved','calicut','/static/store_img/20220331-143557.jpg');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

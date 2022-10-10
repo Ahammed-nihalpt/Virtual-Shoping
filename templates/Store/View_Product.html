@@ -1,0 +1,37 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/store_product_search">
+  <table class="table table-borderless">
+    <tr>
+      <th>product_name</th>
+      <td><input type="text" name="searchfield" id="searchfield" /></td>
+      <td><input type="submit" name="button" id="button" value="Search" class="btn btn-success"/></td>
+    </tr>
+  </table>
+  <table class="table table-borderless">
+  <tr>
+    <th>Sl_No</th>
+    <th>Product_Name</th>
+    <th>Product_Image</th>
+    <th>No_Of_Stock</th>
+    <th>Price</th>
+    <th>Category</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+  </tr>
+      {% for i in data %}
+  <tr>
+    <td>{{ loop.index }}</td>
+    <td>{{ i['product_name'] }}</td>
+    <td><img src="{{ i['product_image'] }}" width="50px" height="50px" alt=""/></td>
+    <td>{{ i['stock_available'] }}</td>
+    <td>{{ i['price'] }}</td>
+    <td>{{ i['category_name'] }}</td>
+    <td><a href="/store_edit_product/{{ i['product_id'] }}" class="btn btn-info">Edit</a></td>
+    <td><a href="/store_delete_product/{{ i['product_id'] }}" class="btn btn-danger">Delete</a></td>
+  </tr>
+      {% endfor %}
+</table>
+
+</form>
+{% endblock %}

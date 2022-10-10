@@ -1,0 +1,63 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+  <table class="table table-borderless">
+      <tr>
+
+      <td colspan="2"><img src="{{ data['store_image'] }}" width="100px" height="100px" alt=""/></td>
+    </tr>
+    <tr>
+      <th>Name:</th>
+      <td>{{ data['store_name'] }}</td>
+    </tr>
+    <tr>
+      <th>Phone:</th>
+      <td>{{ data['store_contact'] }}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{ data['store_email'] }}</td>
+    </tr>
+
+    <tr>
+      <th>Place:</th>
+      <td>{{ data['store_place'] }}</td>
+    </tr>
+    <tr>
+      <th>Pin:</th>
+      <td>{{ data['store_pin'] }}</td>
+    </tr>
+    <tr>
+      <th>Post:</th>
+      <td>{{ data['store_post'] }}</td>
+    </tr>
+    <tr>
+      <th>Store_Lic_No:</th>
+      <td>{{ data['store_lic_no'] }}</td>
+    </tr>
+    <tr>
+      <th>Owner_Name:</th>
+      <td>{{ data['owner_name'] }}</td>
+    </tr>
+    <tr>
+      <th>Owner_Phone:</th>
+      <td>{{ data['owner_contact'] }}</td>
+    </tr>
+    <tr>
+      <th>Store_Longitude:</th>
+      <td>{{ data['store_longitude'] }}</td>
+    </tr>
+    <tr>
+      <th>Store_latitude: </th>
+      <td>{{ data['store_latitude'] }}</td>
+    </tr>
+    <tr>
+      <th>Store_Acc_No</th>
+      <td>{{ data['store_acc_no'] }}</td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><a href="/store_edit_profile" class="btn btn-info">Edit_Profile</a></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

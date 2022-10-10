@@ -1,0 +1,64 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/store_chat_add">
+    <center><h4><i>CHAT WITH USERS</i></h4></center><br>
+<script src="/static/jquery.js"></script>
+    <div class="col-md-12">
+<input type="hidden" id="hid" name="hid" value="{{ toid }}">
+  <table class="table table-bordered">
+    <tr>
+      <th width="92">Message</th>
+      <td width="459"><textarea name="ta" class="form-control" id="textarea" cols="45" rows="5" required></textarea></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2"><input type="submit" class="btn btn-primary" name="SEnd" id="SEnd" value="Send" /></td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  <br />
+
+
+
+  <table id="tbl_msg" class="table" border="0">
+
+  </table>
+</div>
+<script>
+    $(document).ready(function () {
+        var id,toid;
+        toid = document.getElementById("hid").value;
+        var ajax_call = function() {
+            $.ajax({
+                url: '/store_chat_view',
+                type: 'post',
+                data: {idd: toid},
+                success: function (response) {
+                    console.log(response);
+                    $("#tbl_msg").empty();
+                    var ln = response.length;
+                    for (i = 0; i < ln; i++) {
+                        var id = response[i]["form_id"];
+                        var date = response[i]["date"];
+                        var message = response[i]["message"];
+                        if (toid != id)    // outgoing message
+                        {
+                            $("#tbl_msg").append("<tr><td style='width: 50%;background-color: #ffffff;border-radius: 10px;'></td><td style='width: 50%;background-color: #78CF8A;border-radius: 10px;'><div class='row'><div class='col-md-6'>ME</div><div class='col-md-6' align='right'>" + date + "</div><div class='col-md-12'><h4>" + message + "</h4></div></div></td></tr>");
+                        }
+                        if (toid == id)    // incoming message
+                        {
+                            $("#tbl_msg").append("<tr><td style='width: 50%;background-color: #c3e6cb;border-radius: 10px;'><div class='row'><div class='col-md-6'>Other</div><div class='col-md-6' align='right'>" + date + "</div><div class='col-md-12'><h4>" + message + "</h4></div></div></td><td style='width: 50%;background-color: #ffffff;border-radius: 10px;'></td></tr>");
+                        }
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                    alert("error   :   ", error)
+                }
+            });
+        };
+        var interval = 1000; // 1sec
+        setInterval(ajax_call, interval);
+    });
+</script>
+</form>
+{% endblock %}

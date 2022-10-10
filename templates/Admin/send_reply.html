@@ -1,0 +1,18 @@
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/send_reply_post">
+  <table class="table table-borderless">
+    <tr>
+      <th>complaints</th>
+      <td><input type="hidden" value="{{ data["complaint_id"] }}" name="complaint_id"/>{{ data["complaint"] }}</td>
+    </tr>
+    <tr>
+      <th>reply</th>
+      <td><textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Send" class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

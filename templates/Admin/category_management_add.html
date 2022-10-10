@@ -1,0 +1,14 @@
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/category_add_post">
+  <table class="table table-borderless">
+    <tr>
+      <th>Category_name</th>
+      <td><input type="text" name="textfield" id="textfield" required class="form-control"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="ADD" class="btn btn-success" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

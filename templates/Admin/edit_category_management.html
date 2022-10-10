@@ -1,0 +1,13 @@
+{% extends "Admin/admin_index.html" %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/edit_category_post"><table class="table table-borderless">
+  <tr>
+    <th>Category_name<input type="hidden" value="{{ data["category_id"] }}" name="cid"></th>
+      <td><input type="text" name="textfield" id="textfield"  value="{{ data["category_name"] }}"/></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><input type="submit" name="button" id="button" value="Update" class="btn btn-success"/></td>
+  </tr>
+</table>
+</form>
+{% endblock %}

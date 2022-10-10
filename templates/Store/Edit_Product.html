@@ -1,0 +1,36 @@
+{% extends "Store/store_index.html" %}
+{% block body %}
+<form action="/store_edit_product_post" method="post" enctype="multipart/form-data">
+    <table class="table table-borderless">
+  <tr>
+    <th>Product_name<input type="hidden" name="pid" value="{{ data['product_id'] }}"></th>
+    <td><input type="text" name="textfield" id="textfield" value="{{ data['product_name'] }}"/></td>
+  </tr>
+  <tr>
+    <th>Product_image</th>
+    <td><input type="file" name="fileField" id="fileField" /></td>
+  </tr>
+  <tr>
+    <th>No_Of_Stock</th>
+    <td><input type="text" name="textfield2" id="textfield2" value="{{ data['stock_available'] }}"/></td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td><input type="text" name="textfield3" id="textfield3" value="{{ data['price'] }}"/></td>
+  </tr>
+  <tr>
+    <th>Category</th>
+    <td><select name="select" id="select">
+    <option value="{{ data['category_id'] }}">{{ data['category_name'] }}</option>
+       <option></option>
+        {% for i in data1 %}
+        <option value="{{ i['category_id'] }}">{{ i['category_name'] }}</option>
+        {% endfor %}
+    </select></td>
+  </tr>
+  <tr>
+    <t colspan="2" align="center"><input type="submit" name="button" id="button" value="UPDATE" class="btn btn-success"/></t>
+    </tr>
+</table>
+</form>
+{% endblock %}
